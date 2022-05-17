@@ -1,9 +1,11 @@
 import React from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import styled from 'styled-components'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { selectedClass, selectedIndividual, selectedProperty } from '../feature/ontologyDataSlice'
 import Checkbox from './Checkbox'
 import Logo from './Logo'
+import { faSearch } from '@fortawesome/free-solid-svg-icons';
 
 
 const Section = styled.section`
@@ -69,7 +71,7 @@ const Navigation = ({input,setInput}) => {
                   value={input}
                   onChange={setInput}
                 />
-                <i className='fas fa-search'>ciao</i>
+                <FontAwesomeIcon icon={faSearch} />
               </SearchContainer>
             </WrapperSearch>
             <Checkbox label='Class' filter={() => dispatch(selectedClass())} />
