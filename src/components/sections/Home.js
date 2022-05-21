@@ -2,7 +2,7 @@ import React, { useEffect, useMemo, useState }  from 'react'
 import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
-import {  isDetailPage, selectedData } from '../../feature/ontologyDataSlice';
+import {  isDetailPage, resetCheckbox, selectedData } from '../../feature/ontologyDataSlice';
 import { Card } from '../Card';
 import jsonData from '../../db.json'
 import { filterSearch } from '../../utils/filtersUtil';

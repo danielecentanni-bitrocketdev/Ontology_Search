@@ -24,10 +24,14 @@ const NavBar = styled.nav`
  
 `;
 
+const Container = styled.div`
+  display: flex;
+  align-items:center ;
+`;
+
 
 const WrapperSearch = styled.div`
   padding: 0 1.5em;
- 
   border: 1px solid lightgray;
   border-radius: 1.5em;
   margin-right:20px ;
@@ -55,6 +59,9 @@ const SearchContainer = styled.div`
 const Navigation = ({input,setInput}) => {
   const dispatch = useDispatch();
   const isDetailPage = useSelector((state) => state.ontologyData.isDetailPage);
+  const isCheckedClass = useSelector((state) => state.ontologyData.selectedClass);
+  const isCheckedProperty = useSelector((state) => state.ontologyData.selectedProperty);
+  const isCheckedindividual = useSelector((state) => state.ontologyData.selectedIndividual);
   
 
   return (
@@ -62,7 +69,7 @@ const Navigation = ({input,setInput}) => {
       <NavBar>
         <Logo />
         {!isDetailPage && (
-          <div style={{ display: 'flex', alignItems: 'center' }}>
+          <Container>
             <WrapperSearch>
               <SearchContainer>
                 <input
@@ -74,16 +81,22 @@ const Navigation = ({input,setInput}) => {
                 <FontAwesomeIcon icon={faSearch} />
               </SearchContainer>
             </WrapperSearch>
-            <Checkbox label='Class' filter={() => dispatch(selectedClass())} />
+            <Checkbox
+              label='Class'
+              filter={() => dispatch(selectedClass())}
+              selector={isCheckedClass}
+            />
             <Checkbox
               label='Property'
               filter={() => dispatch(selectedProperty())}
+              selector={isCheckedProperty}
             />
             <Checkbox
               label='Individual'
               filter={() => dispatch(selectedIndividual())}
+              selector={isCheckedindividual}
             />
-          </div>
+          </Container>
         )}
       </NavBar>
     </Section>

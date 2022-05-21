@@ -1,4 +1,3 @@
-import '../App.css';
 import { useState } from 'react';
 import {
   animated,
@@ -19,13 +18,14 @@ const StyledLabel = styled.label`
 
 
 
-function Checkbox({ label, filter }) {
-  const [isChecked, setIsChecked] = useState(false);
+function Checkbox({ label, filter,selector }) {
+
+  
   const dispatch = useDispatch();
   const checkboxAnimationRef = useSpringRef();
   const checkboxAnimationStyle = useSpring({
-    backgroundColor: isChecked ? '#202020' : '#fff',
-    borderColor: isChecked ? '#202020' : '#ddd',
+    backgroundColor: selector ? '#202020' : '#fff',
+    borderColor: selector ? '#202020' : '#ddd',
     borderRadius: '20px',
     config: config.gentle,
     ref: checkboxAnimationRef,
@@ -35,13 +35,13 @@ function Checkbox({ label, filter }) {
 
   const checkmarkAnimationRef = useSpringRef();
   const checkmarkAnimationStyle = useSpring({
-    x: isChecked ? 0 : checkmarkLength,
+    x: selector ? 0 : checkmarkLength,
     config: config.gentle,
     ref: checkmarkAnimationRef,
   });
 
   useChain(
-    isChecked
+    selector
       ? [checkboxAnimationRef, checkmarkAnimationRef]
       : [checkmarkAnimationRef, checkboxAnimationRef],
     [0, 0.1]
@@ -49,16 +49,10 @@ function Checkbox({ label, filter }) {
 
   return (
     <StyledLabel>
-      <input
-        type='checkbox'
-        onChange={() => {
-          setIsChecked(!isChecked);
-          dispatch(filter);
-        }}
-      />
+      <input type='checkbox' onChange={() => dispatch(filter)} />
       <animated.svg
         style={checkboxAnimationStyle}
-        className={`checkbox ${isChecked ? 'checkbox--active' : ''}`}
+        className={`checkbox ${selector ? 'checkbox--active' : ''}`}
         // This element is purely decorative so
         // we hide it for screen readers
         aria-hidden='true'

@@ -9,14 +9,9 @@ import PageNotFound from './components/sections/PageNotFound';
 import DetailPage from './components/sections/DetailPage';
 import {  useState } from 'react';
 
-
-
  export const App = () => {
   const [input, setInput] = useState('');
 
-
-  
- 
   const handleChange = (e) => setInput(e.target.value)
   return (
     <main>
