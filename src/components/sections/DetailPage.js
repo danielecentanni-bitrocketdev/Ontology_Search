@@ -34,7 +34,7 @@ export const Paragraph = styled.p`
   margin-top: 0.5rem;
   font-family: 'Sora', sans-serif;
   padding-left: 30px;
-  color: #bbc3c8;
+  color: #202020;
 `;
 
 const DetailPage = () => {

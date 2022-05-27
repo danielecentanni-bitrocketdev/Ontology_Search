@@ -2,7 +2,7 @@ import React, { useEffect, useMemo, useState }  from 'react'
 import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
-import {  isDetailPage, resetCheckbox, selectedData } from '../../feature/ontologyDataSlice';
+import {  isDetailPage, selectedData } from '../../feature/ontologyDataSlice';
 import { Card } from '../Card';
 import jsonData from '../../db.json'
 import { filterSearch } from '../../utils/filtersUtil';
@@ -17,17 +17,17 @@ export const Home = ({input}) => {
   const classe = useSelector((state) => state.ontologyData.selectedClass);
   const property = useSelector((state) => state.ontologyData.selectedProperty);
   const individual = useSelector((state) => state.ontologyData.selectedIndividual);
-  const [data, setData] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
-
-  useEffect(() => {
-    dispatch(isDetailPage(false));
-    }, []);
+  const [data, setData] = useState([]);
 
   useEffect(() => {
     setData(() => filterSearch(jsonData, classe, property, individual, input));
     
   }, [input, classe, property, individual,dispatch]);
+
+    useEffect(() => {
+      dispatch(isDetailPage(false));
+    }, []);
 
   const currentTableData = useMemo(() => {
     const firstPageIndex = (currentPage - 1) * PageSize;
@@ -35,11 +35,7 @@ export const Home = ({input}) => {
     return data?.slice(firstPageIndex, lastPageIndex);
   }, [currentPage,data]);
 
-    console.log('data', data);
-  console.log('currentTableData', currentTableData);
 
-  
-  
   const results = currentTableData.map((item, index) => {
     if (index < 100)
       return (

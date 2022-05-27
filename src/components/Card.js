@@ -57,7 +57,7 @@ export const CardTextTitle = styled.h2`
 `;
 
 export const CardTextBody = styled.p`
-  color: #bbc3c8;
+  color: #202020;
   font-size: 15px;
   display: flex;
   align-items: center;
