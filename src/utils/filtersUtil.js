@@ -28,5 +28,12 @@ export const filterSearch = (array, classe,property,individual,input) => array.f
           .includes(input.toLocaleLowerCase())
       )
         return item;
-      else return null;
+        else if (
+          item.wikiAbstract &&
+          item.wikiAbstract[0]['@value']
+            .toLowerCase()
+            .includes(input.toLocaleLowerCase())
+        )
+          return item;
+        else return null;
     })
